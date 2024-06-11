@@ -1,0 +1,94 @@
+/* 全局样式，包括字体和背景 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;  // 使用现代无衬线字体
+    background: #ecf0f1;  // 采用渐变背景
+}
+
+/* 注册容器的基本样式，包括阴影和圆角 */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 50px;
+    background: #ffffff;  // 纯白背景提高表单的聚焦度
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);  // 提供深度感的阴影
+}
+
+/* 标题样式 */
+header h1 {
+    color: #2d3436;  // 深灰色，优雅且专业
+    font-size: 26px;  // 稍大的字体尺寸提供视觉焦点
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+/* 表单元素样式，包括标签和输入框 */
+.form-container {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 16px;
+    color: #636e72;  // 柔和的灰色调
+    margin-bottom: 10px;
+}
+
+input[type="text"], input[type="tel"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    border: none;  // 去边框，使用下划线样式
+    border-bottom: 2px solid #b2bec3;  // 底部边框突出输入区域
+    background: transparent;  // 透明背景保持清爽
+    font-size: 16px;  // 易读的字体大小
+    color: #2d3436;  // 输入文字同样使用深灰色
+    transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+    border-bottom-color: #0984e3;  // 聚焦时颜色变化，提供视觉反馈
+}
+
+/* 按钮样式，增加悬停效果 */
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #0984e3;  // 鲜艳的按钮颜色增加吸引力
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #74b9ff;  // 悬停时颜色变亮
+    transform: translateY(-2px);  // 轻微上移增加动态效果
+}
+
+/* 底部链接样式，增加一些间距和字体色彩 */
+footer p {
+    font-size: 14px;
+    margin-top: 25px;
+}
+
+footer p a {
+    color: #0984e3;
+    text-decoration: none;
+}
+
+footer p a:hover {
+    text-decoration: underline;  // 点击效果提供反馈
+}

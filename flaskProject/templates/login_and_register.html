@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layui/css/layui.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+<body>
+<div class="container">
+    <div class="form-box">
+        <div class="header-form">
+            <h4 class="text-primary text-center"><i class="fa fa-user-circle" style="font-size:110px;"></i></h4>
+            <div class="image"></div>
+        </div>
+        <div class="body-form">
+            <form onsubmit="return validateLogin();">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input type="text" id="username" class="form-control" placeholder="Username">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" id="password" class="form-control" placeholder="Password">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-secondary btn-block">登录</button>
+                <div class="message">
+                    <div><input type="checkbox" /> 记住我</div>
+                    <div><a href="#">忘记密码？</a></div>
+                </div>
+            </form>
+            <button type="button" class="btn btn-primary btn-block" onclick="window.location.href = '/register';">创建一个账号</button>
+            <!-- 在 login_and_register.html 中添加这个按钮 -->
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+<script type="text/javascript">
+
+            function validateLogin() {
+                var username = document.getElementById('username').value.replace(/\s+/g, "");
+                var password = document.getElementById('password').value.replace(/\s+/g, "");
+
+                if(username.length === 0){
+                    layer.msg('用户名不能为空',{icon:2,time:1000});
+                    return false;
+                }
+
+                if(password.length === 0){
+                    layer.msg('密码不能为空',{icon:2,time:1000});
+                    return false;
+                }
+
+                $.ajax({
+                    url:"/login_register",
+                    method:'post',
+                    data:{"username":username,'password':password},
+                    dataType:'json',
+                    success:function (res){
+                        if(res.code===200){
+                            layer.msg(res.msg,{icon:1,time:1000},function (){
+                                window.location.href='/language_selection'
+                            })
+                        }else {
+                            layer.msg(res.msg,{icon:2,time:1000})
+                        }
+
+
+                    },
+                    error:function (e){
+                        console.log(e);
+                        layer.msg('服务器异常',{icon:5,time:1000})
+                    }
+
+
+
+                });
+
+
+                // 阻止表单默认提交
+                return false;
+        }
+
+</script>
+</html>

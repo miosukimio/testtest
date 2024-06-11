@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日语学习课程</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layui/css/layui.css') }}">
+
+</head>
+<body>
+    <div class="layui-container layui-bg-gray">
+        <header style="margin: 10px;text-align: center">
+            <h1>日语学习课程（{{ levels }}）</h1>
+        </header>
+        {% for d in data %}
+            <div class="layui-card">
+                <div class="layui-header"><h2 style="padding-top: 15px;">{{ d.name }}</h2></div>
+                <div class="layui-card-body layui-bg-gray">
+
+                        <div class="layui-row">
+                            <div class="layui-col-md4" style="padding: 20px;height: 240px;">
+                                    {{ d.introduce }}
+                            </div>
+                            <div class="layui-col-md8"  style="padding: 20px;">
+                                <video id="video_{{ d.id }}" style="width: 100%;height: 300px;" data-value="{{ d.id }}" controls>
+                                    <source src="{{ d.path }}" type="video/mp4">
+                                </video>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        {% endfor %}
+
+
+        <footer style="padding: 10px;">
+            <button onclick="window.location.href='learn'" class="layui-btn layui-btn-normal"><<返回学习主页</button>
+            {% for level in levels_list %}
+                <button  style="float: right;" onclick="window.location.href='/levels?id={{ level.id }}'" class="layui-btn">前往{{ level.name }}</button>
+            {% endfor %}
+        </footer>
+    </div>
+</body>
+<script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+		var _videos = $('video');
+
+        /**
+         * 停止非当前播放项
+         * @param _type 0为当前播放为audio，1为当前播放为video
+         * @param _index 当前播放所以位置索引
+         */
+		function pausePlay(_type, _index){
+
+            //关闭video
+			for(var j = 0; j < _videos.length; j++){
+				if(_type==1){
+					if(j!=_index){
+						_videos[j].pause();
+						_videos[j].currentTime = 0;
+					}
+				}else{
+					_videos[j].pause();
+					_videos[j].currentTime = 0;
+				}
+
+			}
+		}
+
+
+		_videos.each(function(index){
+            //监听video播放事件
+			$(this).on('playing', function(){
+                console.log($(this).attr('data-value'));
+                var v_id=$(this).attr('data-value');
+                $.ajax({
+                    url:'/save_last_levels',
+                    method:'post',
+                    data:{'v_id':v_id},
+                    dataType:'json',
+                });
+				pausePlay(1, index);
+			});
+		});
+	});
+
+
+</script>
+</html>

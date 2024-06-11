@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择习题</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/language_selectionstyle.css') }}">
+</head>
+<body>
+    <div class="language-container">
+        <header>
+            <h1>选择习题</h1>
+        </header>
+        <div class="button-container">
+            {% for d in data %}
+                <button onclick="window.location.href='/select_quiz2?id={{ d.id }}';">{{ d.name }}</button>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

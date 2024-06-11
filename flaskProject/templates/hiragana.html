@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五十音图学习</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layui/css/layui.css') }}">
+
+</head>
+<body>
+    <div class="layui-container layui-bg-gray">
+        <header style="margin: 10px;text-align: center">
+            <h1>五十音图</h1>
+        </header>
+        {% for k,v in data.items() %}
+            <div class="layui-card">
+                <div class="layui-header"><h2>{{ k }}</h2></div>
+                <div class="layui-card-body">
+                    <div class="layui-row">
+                        {% for l in v %}
+                            <div class="layui-col-md2">
+                                <span class="layui-form-label" style="font-size: 15px;">{{ l.name }}</span>
+                                <button class="layui-btn layui-btn-sm" onclick="playSound('{{ l.path }}','{{ l.id }}')">发音</button>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+
+        <footer style="padding: 10px;">
+            <button onclick="window.location.href='learn'" class="layui-btn layui-btn-normal"><<返回学习主页</button>
+        </footer>
+    </div>
+
+</body>
+<script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/static/layui/layui.js"></script>
+    <script>
+        function playSound(path,id) {
+            var audio = new Audio(path);
+            audio.play();
+            $.ajax({
+                url:'/save_hiragana',
+                method:'post',
+                data:{'h_id':id},
+                dataType:'json'
+            })
+
+
+        }
+    </script>
+</html>

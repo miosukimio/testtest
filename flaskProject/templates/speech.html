@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日语发音评估</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/speech.css') }}">
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>日语发音评估</h1>
+        </header>
+        <div class="sentence-generator">
+            <input type="text" id="customSentence" placeholder="输入自定义句子" />
+            <button onclick="generateRandomSentence()">生成随机句子</button>
+        </div>
+        <div class="recording-controls">
+            <button id="startRecording">开始录音</button>
+            <button id="stopRecording" >停止录音</button>
+            <button id="playRecording" >播放录音</button>
+            <button id="sendRecording" >发送评估</button>
+        </div>
+        <div class="feedback">
+            <h2>评估结果:</h2>
+            <p id="evaluationResult">请录音后查看评估结果。</p>
+        </div>
+    </div>
+</body>
+</html>

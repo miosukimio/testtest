@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择语言</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/language_selectionstyle.css') }}">
+</head>
+<body>
+    <div class="language-container">
+        <header>
+            <h1>选择语言</h1>
+        </header>
+        <div class="button-container">
+            <button disabled>英语</button>
+            <button onclick="window.location.href='learn';">日语</button>
+            <button disabled>法语</button>
+            <button disabled>更多...</button>
+        </div>
+    </div>
+</body>
+</html>

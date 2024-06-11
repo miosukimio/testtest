@@ -1,0 +1,43 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.language-container {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.button-container button {
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button-container button:disabled {
+    color: #ccc;
+    cursor: not-allowed;
+    background-color: #e0e0e0;
+}
+
+.button-container button:not(:disabled) {
+    background-color: #007bff;
+    color: white;
+}
+
+.button-container button:not(:disabled):hover {
+    background-color: #0056b3;
+}

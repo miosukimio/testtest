@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外语学习网站首页</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"> <!-- 添加 Google 字体 -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('{{ url_for('static', filename='images/pic2.jpg') }}') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;  <!-- 使用更现代的字体 -->
+        }
+
+        .start-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;  <!-- 调整按钮的内边距，使其看起来更平衡 -->
+            font-size: 20px;  <!-- 轻微减小字体大小以适应更多屏幕尺寸 -->
+            cursor: pointer;
+            border-radius: 8px;  <!-- 增加圆角 -->
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  <!-- 添加阴影提升按钮的立体感 -->
+            transition: all 0.3s;  <!-- 平滑过渡所有变化 -->
+        }
+
+        .start-button:hover, .start-button:focus {  <!-- 添加:focus以改善可访问性 -->
+            background-color: #0056b3;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);  <!-- 悬停时增加阴影深度 -->
+            transform: scale(1.05);  <!-- 轻微放大按钮 -->
+        }
+    </style>
+    <script src="../static/js/app.js"></script>
+</head>
+<body>
+
+    <a href="/login_register" style="text-decoration: none;"> <!-- 移除链接的下划线 -->
+        <button class="start-button">让我们开始吧</button>
+    </a>
+
+</body>
+</html>

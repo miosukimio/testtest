@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习进度跟踪</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layui/css/layui.css') }}">
+</head>
+<body>
+    <div class="layui-container layui-bg-gray">
+        <header style="margin: 10px;text-align: center">
+            <h1>我的课程进度</h1>
+        </header>
+        <div class="layui-card">
+            <div class="layui-card-header"><h2>学习进度</h2></div>
+            <div class="layui-card-body">
+                <table class="layui-table">
+                      <colgroup>
+                        <col width="350">
+                        <col>
+                        <col width="250">
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th>课题名称</th>
+                          <th>课题进度</th>
+                          <th>最后学习时间</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>学习五十音</td>
+                          <td>{{ hiragana }}</td>
+                          <td>{{ hiragana_time }}</td>
+                        </tr>
+                        <tr>
+                          <td>课程学习</td>
+                            <td><a href="/levels">{{ levels }}</a></td>
+                            <td>{{ levels_time }}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header"><h2>习题成绩</h2></div>
+            <div class="layui-card-body">
+                <table class="layui-table">
+                      <colgroup>
+                        <col width="350">
+                        <col>
+                        <col width="250">
+                      </colgroup>
+                      <thead>
+                        <tr>
+                          <th>习题名称</th>
+                          <th>习题得分</th>
+                          <th>完成时间</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for k,v in quiz.items() %}
+                            <tr>
+                              <td>{{ k }}</td>
+                              <td>{{ v.score }}</td>
+                              <td>{{ v.time }}</td>
+                            </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+
+            </div>
+        </div>
+        <footer style="padding: 10px;">
+            <button onclick="window.location.href='learn'" class="layui-btn layui-btn-normal"><<返回学习主页</button>
+        </footer>
+    </div>
+
+
+</body>
+<script src="{{ url_for('static', filename='layui/layui.js') }}"></script>
+</html>

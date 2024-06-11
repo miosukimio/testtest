@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日语学习界面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/learnstyle.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>日语学习界面</h1>
+        </header>
+        <div class="modules-container">
+            <section class="module fifty-sounds">
+                <h2>学习五十音</h2>
+                <p>分类学习日语的五十音图。</p>
+                <button onclick="window.location.href='hiragana';">开始学习</button>
+            </section>
+            <section class="module course-learning">
+                <h2>课程学习</h2>
+                <p>系统学习日语课程，包括初级、中级和高级。</p>
+                <button onclick="window.location.href='levels';">浏览课程</button>
+            </section>
+            <section class="module quiz">
+                <h2>选择题练习</h2>
+                <p>完成一类发音学习后，进行选择题测试。</p>
+                <button onclick="window.location.href='select_quiz';">开始练习</button>
+            </section>
+            <section class="module pronunciation">
+                <h2>发音练习</h2>
+                <p>随机生成一句日语，用户进行发音练习，AI打分。</p>
+                <button onclick="window.location.href='speech';">开始练习</button>
+            </section>
+            <section class="module statistics">
+                <h2>学习统计</h2>
+                <p>查看你的学习进度和成绩统计。</p>
+                <button onclick="window.location.href='progress';">查看统计</button>
+            </section>
+        </div>
+        <footer>
+            <p>返回到 <a href="language_selection">语言选择</a>   <a href="home">主页</a></p>
+        </footer>
+    </div>
+</body>
+</html>

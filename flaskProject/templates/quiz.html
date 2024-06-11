@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日语选择题练习</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layui/css/layui.css') }}">
+
+</head>
+<body>
+    <div class="layui-container layui-bg-gray">
+        <header style="padding: 10px;text-align: center;">
+            <h1>日语选择题练习({{ title }})</h1>
+        </header>
+        <hr>
+        <div class="layui-form">
+            {% for d in data %}
+            <div class="layui-form-item">
+                <div class="layui-row">
+                    <div class="layui-text" style="width: 80%;padding-left: 20px;"><span style="font-size: 20px;">{{ d.question }}</span>
+                        {% if d.file %}
+                            <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" onclick="playSound('{{ d.file }}')"><i class="layui-icon layui-icon-speaker"></i></button>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <div class="layui-form-label">请选择：</div>
+                <div class="layui-input-block">
+                    {% for opt in d.opt_list %}
+                        <input type="radio" name="{{ d.id }}" value="{{ opt }}" title="{{ opt }}" lay-verify="required">
+                    {% endfor %}
+                </div>
+            </div>
+                <hr>
+            {% endfor %}
+            <div class="layui-form-item">
+                <div class="layui-form-label" style="width: 200px;text-align: left;"><h4 id="result"></h4></div>
+                    <div class="layui-input-block" style="float: right;padding-right: 10px;">
+                      <button type="submit" class="layui-btn" lay-submit lay-filter="demo1" id="sub">立即提交</button>
+                      <button type="submit" class="layui-btn layui-btn-primary" id="reload">重做习题</button>
+                    </div>
+            </div>
+        </div>
+
+        <footer style="padding: 10px;">
+            <button onclick="window.location.href='learn'" class="layui-btn layui-btn-normal"><<返回学习主页</button>
+
+        </footer>
+    </div>
+</body>
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/layui/layui.js"></script>
+<script>
+    layui.use(['form','jquery'],function (){
+        var form =layui.form,$=layui.jquery;
+            $('#reload').hide();
+          // 提交事件
+          form.on('submit(demo1)', function(data){
+            var field = data.field; // 获取表单字段值
+            $('#sub').hide();
+            $('#reload').show();
+            // 此处可执行 Ajax 等操作
+            $.ajax({
+                url:'/check_quiz',
+                method:'post',
+                data:{'data':JSON.stringify(field),'c_id':'{{ c_id }}'},
+                dataType:'json',
+                success:function (res){
+                    $('#result').html(res.msg);
+                    layer.msg('提交成功',{icon:1,time:1000});
+                }
+            })
+            return false; // 阻止默认 form 跳转
+          });
+
+          $('#reload').click(function (){
+                window.location.reload();
+          })
+
+
+    })
+
+        function playSound(path) {
+            var audio = new Audio(path);
+            audio.play();
+        }
+</script>
+</html>
